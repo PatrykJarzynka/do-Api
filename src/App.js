@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Successfully Deployed <code>A React application</code> to Netlify with
+          Successfullsy Deployed <code>A React application</code> to Netlify with
           CircleCI
         </p>
         <a
