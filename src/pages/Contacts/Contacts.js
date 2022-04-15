@@ -13,7 +13,7 @@ import {
 } from "../../features/contactsSlice";
 import { useEffect } from "react";
 import { selectToken } from "../../store/slices/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 const StyledHeader = styled.h1({
   marginLeft: 5,
