@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import FormInput from '../../components/FormInput';
-import Button from '../../components/Button';
+import MyButton from '../../components/MyButton';
 import {login} from '../../store/slices/authThunk'
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -35,7 +35,7 @@ const Login = () => {
             <FormInput  onChange={(e) => setEmail(e.target.value)} placeholder="Email" type="email" value={email}/>
             <FormInput onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" value={password}/>
 
-            { loading ? <div className="loading"><span>Loading...</span></div> : <Button type="submit" name="Login"/>}
+            { loading ? <div className="loading"><span>Loading...</span></div> : <MyButton type="submit" name="Login"/>}
 
         </form>
 
