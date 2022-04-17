@@ -4,6 +4,7 @@ import Button from "../../components/Button";
 import { registerUser } from "../../store/slices/registerThunk";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate} from "react-router-dom";
+import { setData } from "../../store/slices/auth";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -15,9 +16,10 @@ const Register = () => {
   const dispatch = useDispatch();
   const { token, loading } = useSelector((state) => state.auth);
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    dispatch(registerUser({ name, email, password }));
+    const data  = await registerUser({ name, email, password });
+    dispatch(setData(data));
     navigate("/contacts");
   };
 
