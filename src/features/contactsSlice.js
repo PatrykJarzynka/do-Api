@@ -15,7 +15,6 @@ const initialState = {
 export const deleteAsync = createAsyncThunk(
   "contacts/deleteContacts",
   async (id, thunkAPI) => {
-    debugger
     const token = thunkAPI.getState().auth.token;
     api.defaults.headers.Authorization = `Bearer ${token}`;
     await deleteContact(id);

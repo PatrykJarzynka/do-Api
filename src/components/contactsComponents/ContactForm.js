@@ -9,11 +9,11 @@ const FancyForm = styled.form({
   display: 'flex',
   flexDirection: 'column',
   width: '500px',
-  marginLeft: 5,
+  marginLeft: 10,
 });
 
-const StyledSpan = styled.span({
-  marginLeft: 5,
+const FancySpan = styled.span({
+  marginLeft: 10,
   fontWeight: 500,
 });
 
@@ -36,9 +36,9 @@ function ContactForm({ onSubmit }) {
 
   return (
     <FancyForm onSubmit={handleSubmit}>
-      <StyledSpan>Name</StyledSpan>
+      <FancySpan>Name</FancySpan>
       <Name type="text" name={name} onChange={handleChange} />
-      <StyledSpan>Number</StyledSpan>
+      <FancySpan>Number</FancySpan>
       <Number type="tel" number={number} onChange={handleChange} />
       <Button type="submit" label={'Add contact'} />
     </FancyForm>

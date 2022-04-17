@@ -1,14 +1,15 @@
-import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
+import styled from "@emotion/styled";
+import PropTypes from "prop-types";
 
 const FancyFilterInput = styled.input({
-  width: '100px',
-  '&:focus': { outlineColor: 'blue' },
+  width: "100px",
+  "&:focus": { outlineColor: "blue" },
 });
 
 const FancyFilter = styled.div({
-  display: 'flex',
-  flexDirection: 'column',
+  display: "flex",
+  flexDirection: "column",
+  marginLeft: 10,
 });
 
 function Filter({ onChange }) {

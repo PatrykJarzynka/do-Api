@@ -1,9 +1,13 @@
 import React, { useEffect} from 'react';
-import {signOut} from '../../store/slices/authThunk';
-import Button from '../../components/Button';
-import {fetchUserData} from '../../store/slices/authThunk'
-import { useSelector, useDispatch } from 'react-redux';
+import Button from "@mui/material/Button";
 import { useNavigate } from 'react-router-dom';
+import styled from '@emotion/styled';
+
+const FancyDiv = styled.div({
+  display: 'flex',
+  justifyContent: 'center',
+  columnGap: "10px"
+})
 
 const Home = () => {
 
@@ -19,31 +23,31 @@ const Home = () => {
 
     return (
       <div className="page">
-        <div>HOME</div>
-        <button type="button" onClick={navigateToLogin}>
-          Login
-        </button>
-        <button type="button" onClick={navigateToRegister}>
-          Register
-        </button>
+        <FancyDiv>
+          <h2>
+            <b>HOME</b>
+          </h2>
+        </FancyDiv>
+        <FancyDiv>
+          <Button
+            variant="contained"
+            size="small"
+            type="button"
+            onClick={navigateToLogin}
+          >
+            Login
+          </Button>
+          <Button
+            variant="contained"
+            size="small"
+            type="button"
+            onClick={navigateToRegister}
+          >
+            Register
+          </Button>
+        </FancyDiv>
       </div>
     );
-//     const dispatch = useDispatch();
-
-//     const {token} = useSelector((state) => state.auth);
-
-//     useEffect(() => {
-//         dispatch(fetchUserData({token}));
-//       }, []);
-
-//     return <div className="page">
-//         <h2>Home</h2>
-
-//         <div>
-//             <Button onClick={() => dispatch(signOut())} name="Sign Out"/>
-//         </div>
-
-//     </div>;
  }
 
 export default Home;

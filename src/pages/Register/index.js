@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FormInput from "../../components/FormInput";
-import Button from "../../components/Button";
+import MyButton from "../../components/MyButton";
 import { registerUser } from "../../store/slices/registerThunk";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate} from "react-router-dom";
@@ -66,7 +66,7 @@ const Register = () => {
             <span>Loading...</span>
           </div>
         ) : (
-          <Button type="submit" name="Register" />
+          <MyButton type="submit" name="Register" />
         )}
       </form>
     </div>

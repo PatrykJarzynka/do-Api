@@ -4,6 +4,18 @@ import MyButton from '../../components/MyButton';
 import {login} from '../../store/slices/authThunk'
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import styled from '@emotion/styled';
+
+const FancyForm = styled.form({
+    display: 'flex',
+    columnGap: "10px"
+})
+
+const FancyDiv = styled.div({
+    marginLeft: "10px"
+})
+
+
 
 const Login = () => {
 
@@ -26,20 +38,36 @@ const Login = () => {
         dispatch(login({ email, password }));
     }
 
-    return <div className="page">
+    return (
+      <FancyDiv className="page">
         <div>
-            <h2>Login</h2>
+          <h2>Login</h2>
         </div>
-        
-        <form onSubmit={handleLogin}>
-            <FormInput  onChange={(e) => setEmail(e.target.value)} placeholder="Email" type="email" value={email}/>
-            <FormInput onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" value={password}/>
 
-            { loading ? <div className="loading"><span>Loading...</span></div> : <MyButton type="submit" name="Login"/>}
+        <FancyForm onSubmit={handleLogin}>
+          <FormInput
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            type="email"
+            value={email}
+          />
+          <FormInput
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            type="password"
+            value={password}
+          />
 
-        </form>
-
-    </div>;
+          {loading ? (
+            <div className="loading">
+              <span>Loading...</span>
+            </div>
+          ) : (
+            <MyButton type="submit" name="Login" />
+          )}
+        </FancyForm>
+      </FancyDiv>
+    );
 }
 
 export default Login;

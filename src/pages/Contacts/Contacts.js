@@ -18,8 +18,12 @@ import UserMenu from "../../components/contactsComponents/UserMenu";
 import { signOut } from "../../store/slices/authThunk";
 
 const StyledHeader = styled.h1({
-  marginLeft: 5,
+  marginLeft: 10,
 });
+
+const StyledHeaderSmaller = styled.h2({
+  marginLeft: 10
+})
 
 function Contacts() {
 
@@ -74,7 +78,7 @@ function Contacts() {
       <UserMenu onClick={logout}></UserMenu>
       <StyledHeader>Phonebook</StyledHeader>
       <ContactForm onSubmit={addContact} />
-      <h2>Contacts</h2>
+      <StyledHeaderSmaller>Contacts</StyledHeaderSmaller>
       <Filter onChange={handleFilter} filter={handleFilter} />
       <ContactList onClick={deleteContact} />
     </div>
