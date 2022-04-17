@@ -5,6 +5,19 @@ import { registerUser } from "../../store/slices/registerThunk";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate} from "react-router-dom";
 import { setData } from "../../store/slices/auth";
+import styled from "@emotion/styled";
+import Notiflix from "notiflix";
+
+const FancyHeader = styled.h1({
+  marginLeft: 10,
+});
+
+const FancyForm = styled.form({
+  display: "flex",
+  alignItems: "center",
+  columnGap: 10,
+  marginLeft: 10
+})
 
 const Register = () => {
   const navigate = useNavigate();
@@ -12,12 +25,17 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
 
   const dispatch = useDispatch();
   const { token, loading } = useSelector((state) => state.auth);
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (password !== password2) {
+      Notiflix.Notify.warning("Passwords don't match");
+      return;
+    }
     const data  = await registerUser({ name, email, password });
     dispatch(setData(data));
     navigate("/contacts");
@@ -25,8 +43,8 @@ const Register = () => {
 
   return (
     <div className="page">
-      <div>Register</div>
-      <form onSubmit={handleRegister}>
+      <FancyHeader>Register</FancyHeader>
+      <FancyForm onSubmit={handleRegister}>
         <label htmlFor="lgn">
           <b>Login</b>
         </label>
@@ -50,7 +68,13 @@ const Register = () => {
         <label htmlFor="psw-repeat">
           <b>Repeat Password</b>
         </label>
-        <FormInput placeholder="Password" id="psw-repeat" type="password" />
+        <FormInput
+          placeholder="Password"
+          id="psw-repeat"
+          type="password"
+          onChange={(e) => setPassword2(e.target.value)}
+          value={password2}
+        />
         <label htmlFor="e-mail">
           <b>Email</b>
         </label>
@@ -68,7 +92,7 @@ const Register = () => {
         ) : (
           <MyButton type="submit" name="Register" />
         )}
-      </form>
+      </FancyForm>
     </div>
   );
 };

@@ -5,7 +5,7 @@ const initialState = {
   token: null,
   loading: false,
   userData: [],
-  location: null,
+  error: false
 };
 
 export const authSlice = createSlice({
@@ -17,11 +17,7 @@ export const authSlice = createSlice({
       state.token = token;
       state.userData = user;
       state.loading = false;
-    },
-    setToken: (state) => {
-      state.token = null;
-      state.loading = false;
-    },
+    }
   },
   extraReducers: {
     [signOut.fulfilled]: (state, action) => {
@@ -39,6 +35,7 @@ export const authSlice = createSlice({
       state.loading = false;
     },
     [login.rejected]: (state, action) => {
+      state.error = true;
       state.loading = false;
     },
     // [fetchUserData.pending]: (state, action) => {
@@ -56,7 +53,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setData, setToken } = authSlice.actions;
+export const { setData } = authSlice.actions;
 export const selectToken = (state) => state.auth.token;
 
 export default authSlice.reducer;
