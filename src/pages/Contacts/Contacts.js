@@ -14,12 +14,16 @@ import {
 import { useEffect } from "react";
 import { selectToken } from "../../store/slices/auth";
 import { useNavigate } from "react-router-dom"
+import UserMenu from "../../components/contactsComponents/UserMenu";
+import { signOut } from "../../store/slices/authThunk";
 
 const StyledHeader = styled.h1({
   marginLeft: 5,
 });
 
 function Contacts() {
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     let abortController = new AbortController();
@@ -29,6 +33,10 @@ function Contacts() {
     };
   }, []);
 
+  const logout = () => {
+    dispatch(signOut(selectToken()));
+    navigate("/login")
+  }
 
   const contacts = useSelector(selectContacts);
 
@@ -55,6 +63,7 @@ function Contacts() {
 
   return (
     <div>
+      <UserMenu onClick={logout}></UserMenu>
       <StyledHeader>Phonebook</StyledHeader>
       <ContactForm onSubmit={addContact} />
       <h2>Contacts</h2>

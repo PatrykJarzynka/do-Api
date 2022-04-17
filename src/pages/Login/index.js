@@ -12,13 +12,18 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
-    const {loading} = useSelector((state) => state.auth);
+    const { loading,token } = useSelector((state) => state.auth);
+    
+    useEffect(() => {
+        if (token) {
+            return navigate("/contacts");
+        }
+    },[token])
 
  
     const handleLogin = (e) => {
         e.preventDefault();
         dispatch(login({ email, password }));
-        navigate("/contacts")
     }
 
     return <div className="page">

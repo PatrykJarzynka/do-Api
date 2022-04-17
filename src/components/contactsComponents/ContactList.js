@@ -11,7 +11,6 @@ const FancyList = styled.ul({
 
 function ContactList({ onClick }) {
   const filteredList = useSelector(selectFilter);
-debugger
   let contacts = filteredList.map((contact) => (
     <li key={nanoid()}>
       {contact.name}:{contact.number}

@@ -88,7 +88,6 @@ export const selectFilter = (state) => {
 };
 
 export const postAsync = (contact) => async (dispatch, getState) => {
-  debugger
   const token = getState().auth.token;
   api.defaults.headers.Authorization = `Bearer ${token}`;
   const response = await postContacts(contact);
