@@ -14,7 +14,10 @@ const initialState = {
 
 export const deleteAsync = createAsyncThunk(
   "contacts/deleteContacts",
-  async (id) => {
+  async (id, thunkAPI) => {
+    debugger
+    const token = thunkAPI.getState().auth.token;
+    api.defaults.headers.Authorization = `Bearer ${token}`;
     await deleteContact(id);
     const response = await fetchContacts();
     return response.data;
@@ -28,8 +31,8 @@ export const deleteAsync = createAsyncThunk(
 
 export const fetchAsync = createAsyncThunk(
   "contacts/fetchContacts",
-  async () => {
-    const token = useSelector(selectToken);
+  async (thunkAPI) => {
+    const token = thunkAPI.getState().auth.token;
     api.defaults.headers.Authorization = `Bearer ${token}`;
     const response = await fetchContacts();
     return response.data;

@@ -23,6 +23,8 @@ const StyledHeader = styled.h1({
 
 function Contacts() {
 
+  const token = useSelector(selectToken);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,9 +35,15 @@ function Contacts() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!token) {
+      return navigate("/login");
+    }
+  },[token])
+
+
   const logout = () => {
-    dispatch(signOut(selectToken()));
-    navigate("/login")
+    dispatch(signOut(token));
   }
 
   const contacts = useSelector(selectContacts);
