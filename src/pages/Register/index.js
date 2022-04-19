@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import FormInput from "../../components/FormInput";
 import MyButton from "../../components/MyButton";
 import { registerUser } from "../../store/slices/registerThunk";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setData } from "../../store/slices/auth";
 import styled from "@emotion/styled";
 import Notiflix from "notiflix";
@@ -16,8 +16,8 @@ const FancyForm = styled.form({
   display: "flex",
   alignItems: "center",
   columnGap: 10,
-  marginLeft: 10
-})
+  marginLeft: 10,
+});
 
 const Register = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Register = () => {
   const [password2, setPassword2] = useState("");
 
   const dispatch = useDispatch();
-  const { token, loading } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ const Register = () => {
       Notiflix.Notify.warning("Passwords don't match");
       return;
     }
-    const data  = await registerUser({ name, email, password });
+    const data = await registerUser({ name, email, password });
     dispatch(setData(data));
     navigate("/contacts");
   };

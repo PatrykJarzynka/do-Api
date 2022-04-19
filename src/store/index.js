@@ -2,9 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./slices/auth";
 import contactsReducer from "../features/contactsSlice";
 
-import { persistStore, persistReducer } from "redux-persist";
+import { persistReducer } from "redux-persist";
 import localStorage from "redux-persist/lib/storage";
-import { PersistGate } from "redux-persist/integration/react";
 import { combineReducers } from "redux";
 import { getPersistConfig } from "redux-deep-persist";
 

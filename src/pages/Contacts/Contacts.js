@@ -13,7 +13,7 @@ import {
 } from "../../features/contactsSlice";
 import { useEffect } from "react";
 import { selectToken } from "../../store/slices/auth";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import UserMenu from "../../components/contactsComponents/UserMenu";
 import { signOut } from "../../store/slices/authThunk";
 
@@ -22,11 +22,10 @@ const StyledHeader = styled.h1({
 });
 
 const StyledHeaderSmaller = styled.h2({
-  marginLeft: 10
-})
+  marginLeft: 10,
+});
 
 function Contacts() {
-
   const token = useSelector(selectToken);
 
   const navigate = useNavigate();
@@ -43,12 +42,11 @@ function Contacts() {
     if (!token) {
       return navigate("/login");
     }
-  },[token])
-
+  }, [token]);
 
   const logout = () => {
     dispatch(signOut(token));
-  }
+  };
 
   const contacts = useSelector(selectContacts);
 

@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchContacts, postContacts, deleteContact } from "./contactAPI";
-import { useSelector } from "react-redux";
-import { selectToken } from "../store/slices/auth";
 import api from "../services/api";
 
 const initialState = {
@@ -23,11 +21,6 @@ export const deleteAsync = createAsyncThunk(
   }
 );
 
-// export const postAsync = createAsyncThunk('contacts/addContacts', async contact => {
-//   const response = await postContacts(contact);
-//   return response.data;
-// });
-
 export const fetchAsync = createAsyncThunk(
   "contacts/fetchContacts",
   async (thunkAPI) => {
@@ -37,17 +30,6 @@ export const fetchAsync = createAsyncThunk(
     return response.data;
   }
 );
-
-
-// export const fetchUserData = createAsyncThunk(
-//   "auth/fetchUserData",
-//   async (payload) => {
-//     const accessToken = payload.token;
-//     api.defaults.headers.Authorization = `Bearer ${accessToken}`;
-//     const response = await api.get("/contacts");
-//     return response.data;
-//   }
-// );
 
 export const contactSlice = createSlice({
   name: "contacts",
@@ -69,9 +51,6 @@ export const contactSlice = createSlice({
         state.status = "idle";
         action.payload.map((contact) => state.contacts.items.push(contact));
       })
-      // .addCase(postAsync.fulfilled, (state, action) => {
-      //   state.contacts.items.push(action.payload);
-      // })
       .addCase(deleteAsync.fulfilled, (state, action) => {
         state.contacts.items = action.payload;
       });
