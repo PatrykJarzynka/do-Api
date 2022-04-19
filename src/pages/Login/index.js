@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import Notiflix from "notiflix";
+import { setData } from "../../store/slices/auth";
 
 const FancyForm = styled.form({
   display: "flex",
@@ -23,7 +24,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { loading, token} = useSelector((state) => state.auth);
+  const { loading, token } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (token) {
@@ -31,9 +32,14 @@ const Login = () => {
     }
   }, [token]);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    dispatch(login({ email, password }));
+    try {
+      const data = await login({ email, password });
+      dispatch(setData(data));
+    } catch (error) {
+      if (error) Notiflix.Notify.warning("Incorrect email or password");
+    }
   };
 
   return (

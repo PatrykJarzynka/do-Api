@@ -1,11 +1,11 @@
-import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
+import styled from "@emotion/styled";
+import PropTypes from "prop-types";
 
 const FancyInput = styled.input({
-  width: '200px',
+  width: "200px",
   marginLeft: 5,
   marginBottom: 20,
-  '&:focus': { outlineColor: 'blue' },
+  "&:focus": { outlineColor: "blue" },
 });
 
 function Number({ number, onChange }) {

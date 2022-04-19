@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
+import styled from "@emotion/styled";
+import PropTypes from "prop-types";
 
 const FancyButton = styled.button((props) => ({
   width: 100,

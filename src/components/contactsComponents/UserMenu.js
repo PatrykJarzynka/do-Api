@@ -2,9 +2,9 @@ import styled from "@emotion/styled";
 import Button from "@mui/material/Button";
 
 const FancyDiv = styled.div({
-    marginLeft: 10,
-    marginTop: 10
-})
+  marginLeft: 10,
+  marginTop: 10,
+});
 
 function UserMenu({ onClick }) {
   return (
